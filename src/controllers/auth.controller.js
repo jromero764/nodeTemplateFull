@@ -1,7 +1,6 @@
 import { generateToken } from "./jwt";
 const { sequelize } = require('../../sequelizeConfig')
 const { QueryTypes } = require('sequelize');
-const model_usuario_sistema = require('../models/usuario_sistema.model');
 const bcrypt = require('bcrypt');
 
 export const Login = async (req, res) => {
@@ -40,36 +39,4 @@ export const Login = async (req, res) => {
     return res.status(500).json({ respuesta: 'Error en el servidor' });
   }
 };
-export const Test = async (req, res) => { return res.status(200).json({ status: 200 }) }
 
-export const sgspPing = async (req, res) => {
-  const response = {
-    resultado: [],
-    errores: [],
-  };
-
-  try {
-    // Simulamos obtener Claims (puedes ajustar esto según tu autenticación)
-    const claims = { subject: 'UsuarioEjemplo' };
-
-
-    try {
-      // Simulamos la llamada al servicio SOAP (ajusta esto a tu caso real)
-      const pingResponse = sendPing(claims.subject);
-      const result = pingResponse;
-
-      response.resultado.push(result);
-    } catch (error) {
-      response.error = 'Error al intentar realizar ping al Ws de SGSP.';
-      response.errores.push('Error al intentar realizar ping al Ws de SGSP.');
-    }
-  } catch (error) {
-    response.errores.push('Error al intentar realizar ping al Ws de SGSP.');
-  }
-
-  res.status(200).json(response);
-};
-
-function sendPing(subject) {
-  return 'Ping exitoso para ' + subject;
-}

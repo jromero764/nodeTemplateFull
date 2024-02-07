@@ -1,5 +1,4 @@
 import { Router } from "express";
-import { getUser,getUserId, postUser, deleteUser } from "../controllers/user.controller";
 
 const router = Router();
 
@@ -28,9 +27,5 @@ const router = Router();
  */
 
 
-router.get('/usuarioSistema',getUser);
-router.get('/usuarioSistema/:id',getUserId);
-router.post('/usuarioSistema',postUser);
-router.delete('/usuarioSistema/:id',deleteUser);
 
 export default router;
